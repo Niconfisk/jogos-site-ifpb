@@ -1,0 +1,73 @@
+        :root {
+    --cor-primaria: #f6fff8;
+    /* Branca */
+    --cor-secundaria: #399934;
+    /* verde */
+    --cor-terciaria: #cce3de;
+    /* cinza */
+    --cor-fundo: #eaf4f4;
+    /* branca*/
+    --cor-texto: #02020a;
+    /* preto */
+}
+        
+        
+        
+        body {
+            background-color: var(--cor-primaria);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color:  var(--cor-secundaria);
+            color: var(--cor-texto);
+            text-align: center;
+            padding: 20px;
+            font-size: 36px;
+            font-weight: arial;
+            text-shadow: 2px 2px 4px var(--cor-texto);
+        }
+        .container {
+            width: 30%;
+            margin: 20px auto;
+        }
+        .card {
+            background-color: var(--cor-secundaria);
+            color: var(--cor-texto);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .card h2 {
+            margin-top: 0;
+            font-size: 24px;
+            font-weight: arial;
+            color: var(--cor-texto)
+        }
+        .card p {
+            font-size: 16px;
+            color: var(--cor-texto)
+        }
+        .card a  {
+            text-decoration: none;
+        }
+
+        .card img {
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        .card .icon {
+            float: left;
+            margin-right: 20px;
+        }
+        .card .icon img {
+            width: 100px;
+            height: 100px;
+        }
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
