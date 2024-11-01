@@ -3,15 +3,18 @@
 // Implentar ao jogo da memória as seguintes funcionalidades: Adicionar um texto referente a imagem que o usuário acertou no jogo, o texto aparecendo em pop-up quando o usuário acertar o par e o texto será respectivo a imagem.
 
 document.addEventListener("DOMContentLoaded", () => {
-    const locations = [];
-    for (let i = 1; i <= 10; i++) {
-        let locate = {
-            id: i,
-            title: `Local ${i}`,
-            description: `Breve história do Local ${i}`,
-        };
-        locations.push(locate);
-    }
+    const locations = [
+        {id: 1, title: 'biblioteca', description: 'Breve história do Local 1'},
+        {id: 2, title: 'entrada', description: 'Breve história do Local 2'},
+        {id: 3, title: 'ginasio', description: 'Breve história do Local 3'},
+        {id: 4, title: 'lab_eletronica', description: 'Breve história do Local 4'},
+        {id: 5, title: 'lab_informatica', description: 'Breve história do Local 5'},
+        {id: 6, title: 'matematica', description: 'Breve história do Local 9'},
+        {id: 7, title: 'lab_mat_construcao', description: 'Breve história do Local 6'},
+        {id: 8, title: 'lab_fisica', description: 'Breve história do Local 7'},
+        {id: 9, title: 'piscina', description: 'Breve história do Local 8'},
+        {id: 10, title: 'refeitorio', description: 'Breve história do Local 10'}
+    ];
 
     let gameGrid = [...locations, ...locations]; // Criando os pares
     gameGrid.sort(() => 0.5 - Math.random()); // Embaralhando as cartas
@@ -28,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
             card.dataset.id = location.id;
 
             const img = document.createElement("img");
-            img.src = "img/local.jpg"; // Imagens locais
+            img.src = `assets/img/${location.title}.jpg`; // Imagens locais
             card.appendChild(img);
 
             card.addEventListener("click", flipCard);
@@ -41,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (lockBoard || this === firstCard) return;
 
         this.classList.add("flipped");
+        this.querySelector("img").style.display = "block"; // Exibe a imagem ao virar a carta
 
         if (!firstCard) {
             firstCard = this;
@@ -50,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
         secondCard = this;
         checkForMatch();
     }
+
 
     // Função para checar se é um par
     function checkForMatch() {
@@ -71,9 +76,11 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
             firstCard.classList.add("hidden");
             secondCard.classList.add("hidden");
+
             resetBoard();
-        }, 500);
+        }, 1500); // Aumente o tempo, por exemplo, para 1500 ms
     }
+
 
     // Voltar as cartas para o estado inicial se não houver par
     function unflipCards() {
@@ -81,6 +88,11 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
             firstCard.classList.remove("flipped");
             secondCard.classList.remove("flipped");
+            
+            // Esconde as imagens novamente
+            firstCard.querySelector("img").style.display = "none";
+            secondCard.querySelector("img").style.display = "none";
+
             resetBoard();
         }, 1000);
     }
