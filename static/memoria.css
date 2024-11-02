@@ -1,0 +1,82 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #d3e8d3;
+}
+.container {
+    display: flex;
+    height: 100vh;
+}
+.sidebar {
+    background-color: #4caf50;
+    width: 15%;
+    padding: 20px;
+    box-sizing: border-box;
+    color: white;
+    font-size: 14px;
+}
+.content {
+    background-color: #f0f8f0;
+    width: 85%;
+    margin: 20px;
+    border-radius: 20px;
+}
+
+.memory-game {
+    display: grid;
+    grid-template-columns: repeat(5, 100px);
+    grid-gap: 10px;
+  }
+  
+  .card {
+    width: 100px;
+    height: 100px;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+  
+  .card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+  }
+  
+  .card.flipped img {
+    display: block;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .popup.hidden {
+    display: none;
+  }
+  
+  .button {
+    background-color: var(--cor-primaria);
+    color: white;
+  }
+  
+  .button-secundaria {
+    background-color: var(--cor-secundaria);
+    color: white;
+  }
