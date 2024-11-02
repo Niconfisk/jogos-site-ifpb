@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Memória - Campus</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Jogo da Memória do Campus</h1>
+
+    <!-- Contêiner do tabuleiro do jogo -->
+    <div id="game-board" class="memory-game"></div>
+
+    <!-- Pop-up que mostra a história do local ao acertar um par -->
+    <div id="popup" class="popup hidden">
+        <h2 id="location-title">Local</h2>
+        <p id="location-description">Breve história sobre o local...</p>
+        <button id="close-popup">Fechar</button>
+    </div>
+
+    <script src="memoria.js"></script>
+</body>
+</html>

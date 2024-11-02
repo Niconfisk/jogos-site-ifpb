@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teste Vocacional</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Link opcional para o CSS -->
+</head>
+
+<body>
+  <form id="quizForm" class="quiz-form">
+    <div class="question">
+      <p>1. Você prefere trabalhar com:</p>
+      <label><input type="radio" name="q1" value="A"> Computadores e sistemas digitais.</label><br>
+      <label><input type="radio" name="q1" value="B"> Máquinas, motores e sistemas mecânicos.</label><br>
+      <label><input type="radio" name="q1" value="C"> Projetos de construção e estruturas físicas.</label>
+    </div>
+
+    <div class="question">
+      <p>2. O que te deixa mais animado?</p>
+      <label><input type="radio" name="q2" value="A"> Resolver problemas de software e programação.</label><br>
+      <label><input type="radio" name="q2" value="B"> Manusear ferramentas e equipamentos mecânicos.</label><br>
+      <label><input type="radio" name="q2" value="C"> Criar plantas de edifícios e projetos de engenharia
+        civil.</label>
+    </div>
+
+    <div class="question">
+      <p>3. Como você lida com projetos?</p>
+      <input type="radio" name="q3" value="A"> Prefere desenvolver soluções lógicas e automatizadas.<br>
+      <input type="radio" name="q3" value="B"> Gosta de consertar e ajustar equipamentos.<br>
+      <input type="radio" name="q3" value="C"> Gosta de planejar e visualizar o design de construções.
+    </div>
+
+    <div class="question">
+      <p>4. Qual das atividades a seguir você prefere?</p>
+      <input type="radio" name="q4" value="A"> Criar ou testar novos aplicativos.<br>
+      <input type="radio" name="q4" value="B"> Desmontar e montar máquinas para ver como funcionam.<br>
+      <input type="radio" name="q4" value="C"> Desenhar ou projetar espaços físicos.
+    </div>
+
+    <div class="question">
+      <p>5. Em qual ambiente você se imagina trabalhando?</p>
+      <input type="radio" name="q5" value="A"> Em uma empresa de tecnologia ou desenvolvendo softwares.<br>
+      <input type="radio" name="q5" value="B"> Em uma oficina ou fábrica, lidando com manutenção de máquinas.<br>
+      <input type="radio" name="q5" value="C"> Em um canteiro de obras ou no escritório, planejando construções.
+    </div>
+
+    <div class="question">
+      <p>6. Que tipo de ferramenta você gosta de usar?</p>
+      <input type="radio" name="q6" value="A"> Computadores e programas.<br>
+      <input type="radio" name="q6" value="B"> Chaves de fenda, alicates, soldadores.<br>
+      <input type="radio" name="q6" value="C"> Réguas, esquadros e software de modelagem 3D.
+    </div>
+
+    <div class="question">
+      <p>7. Qual habilidade você gostaria de desenvolver mais?</p>
+      <input type="radio" name="q7" value="A"> Programação e criação de sistemas digitais.<br>
+      <input type="radio" name="q7" value="B"> Manutenção e instalação de sistemas mecânicos e elétricos.<br>
+      <input type="radio" name="q7" value="C"> Planejamento e execução de projetos de construção.
+    </div>
+
+    <div class="question">
+      <p>8. Qual desses problemas você gostaria de resolver?</p>
+      <input type="radio" name="q8" value="A"> Um bug em um software ou aplicativo.<br>
+      <input type="radio" name="q8" value="B"> Um motor que parou de funcionar.<br>
+      <input type="radio" name="q8" value="C"> Um prédio que precisa ser reformado ou melhorado.
+    </div>
+
+    <div class="question">
+      <p>9. Como você descreveria seu estilo de trabalho?</p>
+      <input type="radio" name="q9" value="A"> Detalhista, focado em lógica e precisão.<br>
+      <input type="radio" name="q9" value="B"> Prático, gosta de resolver problemas com as mãos.<br>
+      <input type="radio" name="q9" value="C"> Criativo, gosta de planejar e visualizar ideias.
+    </div>
+    <div class="question">
+      <p>10. Qual dessas áreas você acha mais interessante?</p>
+      <label><input type="radio" name="q10" value="A"> Tecnologia da informação e desenvolvimento de
+        softwares.</label><br>
+      <label><input type="radio" name="q10" value="B"> Mecânica e sistemas de energia.</label><br>
+      <label><input type="radio" name="q10" value="C"> Arquitetura e construção civil.</label>
+    </div>
+
+    <button type="button" class="submit-btn">Ver resultado</button>
+  </form>
+
+  <div id="resultado" class="result"></div>
+
+  <script src="quiz.js"></script> <!-- Link para o arquivo JavaScript -->
+</body>
+
+</html>
