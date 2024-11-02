@@ -1,16 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palavra Cruzada</title>
+    <link rel="stylesheet" href="static/palavra_cruzada.css">
 </head>
 <body>
     <div class="container">
         <div class="sidebar">
             <p>Palavra Cruzada</p>
-            <p>jogo</p>
+            <p>Jogo</p>
         </div>
         <div class="content">
-            <!-- Content goes here -->
+            <h1>Quebra-Cabeça de Palavras Cruzadas</h1>
+            <div id="crossword">
+                <input type="text" data-answer="A" data-group="1">
+                <input type="text" data-answer="B" data-group="1">
+                <input type="text" data-answer="C" data-group="1">
+                <input type="text" data-answer="D" data-group="1">
+                <input type="text" data-answer="E" data-group="1">
+                
+                <input type="text" data-answer="F" data-group="2">
+                <input type="text" data-answer="G" data-group="2">
+                <input type="text" data-answer="H" data-group="2">
+                <input type="text" data-answer="I" data-group="2">
+                <input type="text" data-answer="J" data-group="2">
+            </div>
+            <button onclick="checkAnswers()">Verificar Respostas</button>
         </div>
     </div>
+
+    <script src="javascript/palavras_cruzadas.js"></script>
 </body>
 </html>

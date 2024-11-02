@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
         {id: 3, title: 'ginasio', description: 'Breve história do Local 3'},
         {id: 4, title: 'lab_eletronica', description: 'Breve história do Local 4'},
         {id: 5, title: 'lab_informatica', description: 'Breve história do Local 5'},
-        {id: 6, title: 'matematica', description: 'Breve história do Local 9'},
+        {id: 6, title: 'lab_matematica', description: 'Breve história do Local 9'},
         {id: 7, title: 'lab_mat_construcao', description: 'Breve história do Local 6'},
         {id: 8, title: 'lab_fisica', description: 'Breve história do Local 7'},
         {id: 9, title: 'piscina', description: 'Breve história do Local 8'},
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
             card.dataset.id = location.id;
 
             const img = document.createElement("img");
-            img.src = `assets/img/${location.title}.jpg`; // Imagens locais
+            img.src = `assets/${location.title}.jpg`; // Imagens locais
             card.appendChild(img);
 
             card.addEventListener("click", flipCard);
