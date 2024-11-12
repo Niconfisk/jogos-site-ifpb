@@ -4,17 +4,17 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     const locations = [
-        { id: 1, title: 'biblioteca', description: 'Breve história do Local 1' },
-        { id: 2, title: 'entrada', description: 'Breve história do Local 2' },
-        { id: 3, title: 'ginasio', description: 'Breve história do Local 3' },
+        { id: 1, title: 'biblioteca', description: 'Dedicada ao professor Ribamar da Silva, a biblioteca tem como missão “organizar, preservar e disseminar a informação para a produção do conhecimento, dando suporte às atividades educacionais, científicas, tecnológicas e culturais do IFPB Cajazeiras.”' },
+        { id: 2, title: 'entrada', description: 'O campus Cajazeiras foi inaugurado em 4 de dezembro de 1994, com o início das aulas em 27 de março de 1995, uma segunda-feira. A missão do instituto é oferecer educação profissional, tecnológica e humanística em todos os níveis e modalidades por meio do ensino.' },
+        { id: 3, title: 'ginasio', description: 'O ginásio foi inaugurado em 17 de setembro de 1996, como parte das celebrações do 87º aniversário de fundação da Escola Técnica Federal da Paraíba, em homenagem à professora Eudna Maria Barbosa de Araújo. Desde então, o espaço serve de apoio para o desenvolvimento de atividades esportivas, culturais e para a celebração de momentos importantes para o campus.' },
         { id: 4, title: 'lab_eletronica', description: 'Breve história do Local 4' },
         { id: 5, title: 'lab_informatica', description: 'Breve história do Local 5' },
-        { id: 6, title: 'lab_matematica', description: 'Breve história do Local 9' },
+        { id: 6, title: 'lab_matematica', description: 'O Laboratório de Ensino de Matemática foi inaugurado em 6 de maio de 2014 em homenagem à professora Maria José Araújo, o Laboratório de Matemática apoia as aulas dos alunos do Ensino Médio Integrado e oferece práticas complementares para estudantes de Licenciatura em Matemática, enriquecendo sua formação acadêmica.' },
         { id: 7, title: 'lab_mat_construcao', description: 'Breve história do Local 6' },
-        { id: 8, title: 'lab_fisica', description: 'Breve história do Local 7' },
+        { id: 8, title: 'lab_fisica', description: 'Reestruturado em 21 de julho de 2017, o laboratório homenageia o professor José Pereira da Silva, que leciona no campus Cajazeiras desde o início, em 27 de março de 1995. O laboratório é uma ferramenta para aprofundar os conteúdos teóricos e possibilitar a aplicação prática dos conhecimentos.' },
         { id: 9, title: 'piscina', description: 'Breve história do Local 8' },
-        { id: 10, title: 'refeitorio', description: 'Breve história do Local 10' }
-    ];
+        { id: 10, title: 'refeitorio', description: 'O refeitório estudantil, inaugurado em 11 de outubro de 2013, homenageia a professora e líder sindical Maria de Fátima Ferreira Cartaxo. Com capacidade para 96 alunos, o refeitório atende diariamente cerca de 378 estudantes.' }
+     ];
 
     let gameGrid = [...locations, ...locations]; // Criando pares de cartas
     gameGrid.sort(() => Math.random() - 0.5); // Embaralhando as cartas
