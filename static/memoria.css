@@ -81,3 +81,23 @@ body {
     background-color: var(--cor-secundaria);
     color: white;
   }
+
+
+
+  .card.matched {
+    background-color: #4caf50; /* Cor verde para indicar que o par foi encontrado */
+    border: 2px solid #fff; /* Borda branca */
+    animation: pulse 0.5s; /* Animação de pulsar */
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
