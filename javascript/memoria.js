@@ -4,47 +4,50 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     const locations = [
-        {id: 1, title: 'biblioteca', description: 'Breve história do Local 1'},
-        {id: 2, title: 'entrada', description: 'Breve história do Local 2'},
-        {id: 3, title: 'ginasio', description: 'Breve história do Local 3'},
-        {id: 4, title: 'lab_eletronica', description: 'Breve história do Local 4'},
-        {id: 5, title: 'lab_informatica', description: 'Breve história do Local 5'},
-        {id: 6, title: 'lab_matematica', description: 'Breve história do Local 9'},
-        {id: 7, title: 'lab_mat_construcao', description: 'Breve história do Local 6'},
-        {id: 8, title: 'lab_fisica', description: 'Breve história do Local 7'},
-        {id: 9, title: 'piscina', description: 'Breve história do Local 8'},
-        {id: 10, title: 'refeitorio', description: 'Breve história do Local 10'}
+        { id: 1, title: 'biblioteca', description: 'Breve história do Local 1' },
+        { id: 2, title: 'entrada', description: 'Breve história do Local 2' },
+        { id: 3, title: 'ginasio', description: 'Breve história do Local 3' },
+        { id: 4, title: 'lab_eletronica', description: 'Breve história do Local 4' },
+        { id: 5, title: 'lab_informatica', description: 'Breve história do Local 5' },
+        { id: 6, title: 'lab_matematica', description: 'Breve história do Local 9' },
+        { id: 7, title: 'lab_mat_construcao', description: 'Breve história do Local 6' },
+        { id: 8, title: 'lab_fisica', description: 'Breve história do Local 7' },
+        { id: 9, title: 'piscina', description: 'Breve história do Local 8' },
+        { id: 10, title: 'refeitorio', description: 'Breve história do Local 10' }
     ];
 
-    let gameGrid = [...locations, ...locations]; // Criando os pares
-    gameGrid.sort(() => 0.5 - Math.random()); // Embaralhando as cartas
+    let gameGrid = [...locations, ...locations]; // Criando pares de cartas
+    gameGrid.sort(() => Math.random() - 0.5); // Embaralhando as cartas
 
     const gameBoard = document.getElementById("game-board");
     let firstCard, secondCard;
-    let lockBoard = false;
+    let isBoardLocked = false;
 
-    // Função para criar as cartas dinamicamente
+    // Função para criar o tabuleiro
     function createBoard() {
-        gameGrid.forEach((location) => {
-            const card = document.createElement("div");
-            card.classList.add("card");
-            card.dataset.id = location.id;
-
-            const img = document.createElement("img");
-            img.src = `assets/${location.title}.jpg`; // Imagens locais
-            card.appendChild(img);
-
-            card.addEventListener("click", flipCard);
-            gameBoard.appendChild(card);
-        });
+        gameGrid.forEach(createCard);
     }
 
-    // Função para virar a carta
-    function flipCard() {
-        if (lockBoard || this === firstCard) return;
+    // Função para criar cada carta
+    function createCard(location) {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.dataset.id = location.id;
 
-        this.classList.add("flipped");
-        this.querySelector("img").style.display = "block"; // Exibe a imagem ao virar a carta
+        const img = document.createElement("img");
+        img.src = `assets/${location.title}.jpg`; // Imagens locais
+        img.style.display = "none"; // Imagem oculta até virar a carta
+        card.appendChild(img);
+
+        card.addEventListener("click", handleCardClick);
+        gameBoard.appendChild(card);
+    }
+
+    // Função para manipular clique nas cartas
+    function handleCardClick() {
+        if (isBoardLocked || this === firstCard) return;
+
+        revealCard(this);
 
         if (!firstCard) {
             firstCard = this;
@@ -55,66 +58,71 @@ document.addEventListener("DOMContentLoaded", () => {
         checkForMatch();
     }
 
+    // Função para revelar carta
+    function revealCard(card) {
+        card.classList.add("flipped");
+        card.querySelector("img").style.display = "block"; // Exibe a imagem
+    }
 
-    // Função para checar se é um par
+    // Função para ocultar carta
+    function hideCard(card) {
+        card.classList.remove("flipped");
+        card.querySelector("img").style.display = "none"; // Oculta a imagem
+    }
+
+    // Função para verificar se houve um par
     function checkForMatch() {
         const isMatch = firstCard.dataset.id === secondCard.dataset.id;
 
-        if (isMatch) {
-            disableCards();
-            showLocationInfo(firstCard.dataset.id);
-        } else {
-            unflipCards();
-        }
+        isMatch ? handleMatch() : unflipCards();
     }
 
-    // Desabilitar cartas quando o par for encontrado
-    function disableCards() {
-        firstCard.removeEventListener("click", flipCard);
-        secondCard.removeEventListener("click", flipCard);
+    // Função para tratar o caso de um par correto
+    function handleMatch() {
+        disableCardClick(firstCard);
+        disableCardClick(secondCard);
 
-        setTimeout(() => {
-            firstCard.classList.add("hidden");
-            secondCard.classList.add("hidden");
-
-            resetBoard();
-        }, 1500); // Aumente o tempo, por exemplo, para 1500 ms
+        showLocationInfo(firstCard.dataset.id);
+        resetBoard();
     }
 
+    // Função para desativar o clique em cartas pareadas
+    function disableCardClick(card) {
+        card.removeEventListener("click", handleCardClick);
+        setTimeout(() => card.classList.add("hidden"), 1500); // Oculta as cartas após um tempo
+    }
 
-    // Voltar as cartas para o estado inicial se não houver par
+    // Função para desvirar cartas que não formaram par
     function unflipCards() {
-        lockBoard = true;
+        isBoardLocked = true;
         setTimeout(() => {
-            firstCard.classList.remove("flipped");
-            secondCard.classList.remove("flipped");
-            
-            // Esconde as imagens novamente
-            firstCard.querySelector("img").style.display = "none";
-            secondCard.querySelector("img").style.display = "none";
-
+            hideCard(firstCard);
+            hideCard(secondCard);
             resetBoard();
         }, 1000);
     }
 
-    // Resetar o estado do tabuleiro
+    // Função para resetar o estado do tabuleiro
     function resetBoard() {
-        [firstCard, secondCard, lockBoard] = [null, null, false];
+        [firstCard, secondCard, isBoardLocked] = [null, null, false];
     }
 
-    // Mostrar pop-up com a história do local
+    // Função para exibir informações do local pareado
     function showLocationInfo(id) {
-        const location = locations.find((loc) => loc.id == id);
-
+        const location = locations.find(loc => loc.id == id);
         document.getElementById("location-title").textContent = location.title;
-        document.getElementById("location-description").textContent =
-            location.description;
-        document.getElementById("popup").classList.remove("hidden");
+        document.getElementById("location-description").textContent = location.description;
+        togglePopup(true);
     }
 
-    // Fechar o pop-up
+    // Função para alternar o estado do pop-up
+    function togglePopup(show) {
+        document.getElementById("popup").classList.toggle("hidden", !show);
+    }
+
+    // Fechar o pop-up ao clicar no botão de fechar
     document.getElementById("close-popup").addEventListener("click", () => {
-        document.getElementById("popup").classList.add("hidden");
+        togglePopup(false);
     });
 
     // Inicializar o jogo
