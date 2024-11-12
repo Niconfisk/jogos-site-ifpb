@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
         divResultado.innerHTML = textoResultado;
         divResultado.classList.add('show');
     }
-
+//Quiz finalizado.Faltando, apenas, o css e possíveis alterações no html.
     // Adiciona o evento de clique ao botão
     const btnSubmit = document.querySelector('.submit-btn');
     btnSubmit.addEventListener('click', calcularResultado);
