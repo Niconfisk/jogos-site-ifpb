@@ -7,21 +7,35 @@
     <link rel="stylesheet" href="static\memoria.css">
 </head>
 <body>
-    <h1>Jogo da Memória do Campus</h1>
     <div class="container">
         <div class="sidebar">
-            <p>Linha do tempo</p>
-            <p>Campus</p>
+            <a href="index.html">
+                <div class="icon">
+                 <img alt="home" height="50" src="assets/home.png" width="50"/>
+                </div>
+            </a>
+            <a href="quiz.html">
+                <div class="icon">
+                 <img alt="quiz" height="50" src="assets/homempensando.png" width="50"/>
+                </div>
+            </a>
+            <a href="palavra_cruzada.html">
+                <div class="icon">
+                 <img alt="cruzada" height="50" src="assets/palavracruzada.png" width="50"/>
+                </div>
+            </a>
         </div>
         <div class="content">
+            <div class="teste">
+            <h1>Jogo da Memória do Campus</h1>
             <div id="game-board" class="memory-game"></div>
-            <!-- Pop-up que mostra a história do local ao acertar um par -->
             <div id="popup" class="popup hidden">
                 <h2 id="location-title">Local</h2>
                 <p id="location-description">Breve história sobre o local...</p>
                 <button id="close-popup">Fechar</button>
             </div>
         </div>
+    </div>
     </div>
 
     <script src="javascript\memoria.js"></script>

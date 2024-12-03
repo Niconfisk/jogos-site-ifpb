@@ -1,103 +1,81 @@
 
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #d3e8d3;
-
-}
-.container {
-    display: flex;
-    height: 100vh;
-}
-.sidebar {
-    background-color: #4caf50;
-    width: 15%;
-    padding: 20px;
-    box-sizing: border-box;
-    color: white;
-    font-size: 14px;
-}
-.content {
-    background-color: #f0f8f0;
-    width: 85%;
-    margin: 20px;
-    border-radius: 20px;
-}
-
-.memory-game {
-    display: grid;
-    grid-template-columns: repeat(5, 100px);
-    grid-gap: 10px;
-  }
-  
-  .card {
-    width: 100px;
-    height: 100px;
-    background-color: #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    border-radius: 8px;
-  }
-  
-  .card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: none;
-  }
-  
-  .card.flipped img {
-    display: block;
-  }
-  
-  .hidden {
-    display: none;
-  }
-  
-  .popup {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .popup.hidden {
-    display: none;
-  }
-  
-  .button {
-    background-color: var(--cor-primaria);
-    color: white;
-  }
-  
-  .button-secundaria {
-    background-color: var(--cor-secundaria);
-    color: white;
-  }
-
-
-
-  .card.matched {
-    background-color: #4caf50; /* Cor verde para indicar que o par foi encontrado */
-    border: 2px solid #fff; /* Borda branca */
-    animation: pulse 0.5s; /* Animação de pulsar */
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #d3e8d3;
     }
-    50% {
-        transform: scale(1.1);
+
+    h1 {
+      text-align: center;
     }
-    100% {
-        transform: scale(1);
+
+    .container {
+      display: flex;
+      height: 100vh;
     }
-}
+
+    .sidebar {
+      background-color: #4caf50;
+      width: 15%;
+      padding: 20px;
+      box-sizing: border-box;
+      color: white;
+      font-size: 14px;
+    }
+
+    .content {
+      width: 100%;
+      height: 100%;
+      margin: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .memory-game {
+      display: grid;
+      grid-template-columns: repeat(5, 100px);
+      grid-gap: 10px;
+    }
+
+    .card {
+      width: 100px;
+      height: 100px;
+      background-color: #399934;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+
+    .card.flipped img {
+      display: block;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .popup {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+    }
+
+    .teste {
+      background-color: #f0f8f0;
+      padding: 3rem;
+      border-radius: 20px;
+    }

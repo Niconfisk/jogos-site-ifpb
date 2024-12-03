@@ -15,10 +15,16 @@ body {
     box-sizing: border-box;
     color: white;
     font-size: 14px;
+    overflow-y:calc(auto);
 }
 .content {
     background-color: #f0f8f0;
     width: 85%;
+    height: max-content;
     margin: 20px;
     border-radius: 20px;
+}
+
+.quiz-form {
+    overflow: auto;
 }
