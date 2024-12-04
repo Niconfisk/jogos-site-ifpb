@@ -137,3 +137,16 @@ button:hover {
   padding: 3rem;
   border-radius: 20px;
 }
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .card {
+        flex: 1 1 calc(50% - 20px); /* Dois cards por linha em telas menores */
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        flex: 1 1 100%; /* Um card por linha em telas muito pequenas */
+    }
+}
