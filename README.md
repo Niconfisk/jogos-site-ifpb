@@ -60,6 +60,7 @@ jogos-site-ifpb/
 ├── css/                # Folhas de estilo
 │   ├── quiz.css        # Estilos para o quiz
 │   └── memoria.css      # Estilos para o jogo de memória
+│   └──estilo.css     # Estilos para o index.html  
 │
 ├── js/                 # Scripts JavaScript
 │   ├── quiz.js         # Lógica do quiz
