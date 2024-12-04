@@ -7,124 +7,97 @@ document.addEventListener("DOMContentLoaded", () => {
         { id: 1, title: 'biblioteca', description: 'Dedicada ao professor Ribamar da Silva, a biblioteca tem como missão “organizar, preservar e disseminar a informação para a produção do conhecimento, dando suporte às atividades educacionais, científicas, tecnológicas e culturais do IFPB Cajazeiras.”' },
         { id: 2, title: 'entrada', description: 'O campus Cajazeiras foi inaugurado em 4 de dezembro de 1994, com o início das aulas em 27 de março de 1995, uma segunda-feira. A missão do instituto é oferecer educação profissional, tecnológica e humanística em todos os níveis e modalidades por meio do ensino.' },
         { id: 3, title: 'ginasio', description: 'O ginásio foi inaugurado em 17 de setembro de 1996, como parte das celebrações do 87º aniversário de fundação da Escola Técnica Federal da Paraíba, em homenagem à professora Eudna Maria Barbosa de Araújo. Desde então, o espaço serve de apoio para o desenvolvimento de atividades esportivas, culturais e para a celebração de momentos importantes para o campus.' },
-        { id: 4, title: 'lab_eletronica', description: 'Breve história do Local 4' },
-        { id: 5, title: 'lab_informatica', description: 'Breve história do Local 5' },
+        { id: 4, title: 'lab_eletronica', description: 'Este laboratório é utilizado pelos alunos do curso superior e do curso integrado em Eletromecânica. O espaço é destinado ao desenvolvimento de circuitos eletrônicos e à aplicação prática dos conhecimentos adquiridos em sala de aula.  ' },
+        { id: 5, title: 'lab_informatica', description: 'Este laboratório serve como uma ferramenta de apoio aos estudos do curso de Análise e Desenvolvimento de Sistemas (ADS) e do curso integrado em Informática. Ele é essencial para explicar e apresentar os conteúdos aos estudantes, sendo utilizado diariamente para atividades práticas e didáticas.  ' },
         { id: 6, title: 'lab_matematica', description: 'O Laboratório de Ensino de Matemática foi inaugurado em 6 de maio de 2014 em homenagem à professora Maria José Araújo, o Laboratório de Matemática apoia as aulas dos alunos do Ensino Médio Integrado e oferece práticas complementares para estudantes de Licenciatura em Matemática, enriquecendo sua formação acadêmica.' },
-        { id: 7, title: 'lab_mat_construcao', description: 'Breve história do Local 6' },
+        { id: 7, title: 'lab_mat_construcao', description: 'Localizado no bloco 04 do campus, este laboratório atende os estudantes do Curso Técnico em Edificações, tanto na modalidade integrada quanto subsequente. Ele é utilizado como um ambiente de suporte para atividades práticas. ' },
         { id: 8, title: 'lab_fisica', description: 'Reestruturado em 21 de julho de 2017, o laboratório homenageia o professor José Pereira da Silva, que leciona no campus Cajazeiras desde o início, em 27 de março de 1995. O laboratório é uma ferramenta para aprofundar os conteúdos teóricos e possibilitar a aplicação prática dos conhecimentos.' },
-        { id: 9, title: 'piscina', description: 'Breve história do Local 8' },
+        { id: 9, title: 'piscina', description: 'A piscina do IFPB Campus Cajazeiras é um espaço utilizado para atividades práticas de Educação Física, eventos esportivos e treinamentos. Além de atender os alunos, também é disponibilizada para a comunidade.' },
         { id: 10, title: 'refeitorio', description: 'O refeitório estudantil, inaugurado em 11 de outubro de 2013, homenageia a professora e líder sindical Maria de Fátima Ferreira Cartaxo. Com capacidade para 96 alunos, o refeitório atende diariamente cerca de 378 estudantes.' }
      ];
 
-    let gameGrid = [...locations, ...locations]; // Criando pares de cartas
-    gameGrid.sort(() => Math.random() - 0.5); // Embaralhando as cartas
-
     const gameBoard = document.getElementById("game-board");
-    let firstCard, secondCard;
-    let isBoardLocked = false;
+    const popup = document.getElementById("popup");
+    const locationTitle = document.getElementById("location-title");
+    const locationDescription = document.getElementById("location-description");
+    const closePopupButton = document.getElementById("close-popup");
 
-    // Função para criar o tabuleiro
-    function createBoard() {
-        gameGrid.forEach(createCard);
-    }
+    let gameGrid = [...locations, ...locations];
+    gameGrid.sort(() => Math.random() - 0.5);
 
-    // Função para criar cada carta
-    function createCard(location) {
+    let firstCard = null;
+    let lockBoard = false;
+
+    function createCard({ id, title }) {
         const card = document.createElement("div");
         card.classList.add("card");
-        card.dataset.id = location.id;
+        card.dataset.id = id;
 
         const img = document.createElement("img");
-        img.src = `assets/${location.title}.jpg`; // Imagens locais
-        img.style.display = "none"; // Imagem oculta até virar a carta
-        card.appendChild(img);
+        img.src = `assets/${title}.jpg`;
+        img.alt = title;
 
+        card.appendChild(img);
         card.addEventListener("click", handleCardClick);
-        gameBoard.appendChild(card);
+
+        return card;
     }
 
-    // Função para manipular clique nas cartas
-    function handleCardClick() {
-        if (isBoardLocked || this === firstCard) return;
+    function createBoard() {
+        gameGrid.forEach(location => gameBoard.appendChild(createCard(location)));
+    }
 
-        revealCard(this);
+    function handleCardClick() {
+        if (lockBoard || this === firstCard || this.classList.contains("hidden")) return;
+
+        this.classList.add("flipped");
+        this.querySelector("img").style.display = "block";
 
         if (!firstCard) {
             firstCard = this;
             return;
         }
 
-        secondCard = this;
-        checkForMatch();
+        const secondCard = this;
+        checkForMatch(firstCard, secondCard);
     }
 
-    // Função para revelar carta
-    function revealCard(card) {
-        card.classList.add("flipped");
-        card.querySelector("img").style.display = "block"; // Exibe a imagem
+    function checkForMatch(card1, card2) {
+        lockBoard = true;
+
+        const isMatch = card1.dataset.id === card2.dataset.id;
+        if (isMatch) {
+            setTimeout(() => {
+                card1.classList.add("hidden");
+                card2.classList.add("hidden");
+                showLocationInfo(card1.dataset.id);
+                resetBoard();
+            }, 500);
+        } else {
+            setTimeout(() => {
+                card1.classList.remove("flipped");
+                card2.classList.remove("flipped");
+                card1.querySelector("img").style.display = "none";
+                card2.querySelector("img").style.display = "none";
+                resetBoard();
+            }, 1000);
+        }
     }
 
-    // Função para ocultar carta
-    function hideCard(card) {
-        card.classList.remove("flipped");
-        card.querySelector("img").style.display = "none"; // Oculta a imagem
-    }
-
-    // Função para verificar se houve um par
-    function checkForMatch() {
-        const isMatch = firstCard.dataset.id === secondCard.dataset.id;
-
-        isMatch ? handleMatch() : unflipCards();
-    }
-
-    // Função para tratar o caso de um par correto
-    function handleMatch() {
-        disableCardClick(firstCard);
-        disableCardClick(secondCard);
-
-        showLocationInfo(firstCard.dataset.id);
-        resetBoard();
-    }
-
-    // Função para desativar o clique em cartas pareadas
-    function disableCardClick(card) {
-        card.removeEventListener("click", handleCardClick);
-        setTimeout(() => card.classList.add("hidden"), 1500); // Oculta as cartas após um tempo
-    }
-
-    // Função para desvirar cartas que não formaram par
-    function unflipCards() {
-        isBoardLocked = true;
-        setTimeout(() => {
-            hideCard(firstCard);
-            hideCard(secondCard);
-            resetBoard();
-        }, 1000);
-    }
-
-    // Função para resetar o estado do tabuleiro
-    function resetBoard() {
-        [firstCard, secondCard, isBoardLocked] = [null, null, false];
-    }
-
-    // Função para exibir informações do local pareado
     function showLocationInfo(id) {
         const location = locations.find(loc => loc.id == id);
-        document.getElementById("location-title").textContent = location.title;
-        document.getElementById("location-description").textContent = location.description;
-        togglePopup(true);
+        if (location) {
+            locationTitle.textContent = location.title;
+            locationDescription.textContent = location.description;
+            popup.classList.remove("hidden");
+        }
     }
 
-    // Função para alternar o estado do pop-up
-    function togglePopup(show) {
-        document.getElementById("popup").classList.toggle("hidden", !show);
+    function resetBoard() {
+        [firstCard, lockBoard] = [null, false];
     }
 
-    // Fechar o pop-up ao clicar no botão de fechar
-    document.getElementById("close-popup").addEventListener("click", () => {
-        togglePopup(false);
-    });
+    closePopupButton.addEventListener("click", () => popup.classList.add("hidden"));
 
-    // Inicializar o jogo
     createBoard();
 });

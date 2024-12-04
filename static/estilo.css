@@ -1,16 +1,10 @@
 :root {
     --cor-primaria: #f6fff8;
-    /* Branca */
     --cor-secundaria: #399934;
-    /* verde */
     --cor-terciaria: #cce3de;
-    /* cinza */
     --cor-fundo: #eaf4f4;
-    /* branca*/
     --cor-texto: #02020a;
-    /* preto */
 }
-
 
 body {
     background-color: var(--cor-primaria);
@@ -18,38 +12,50 @@ body {
     margin: 0;
     padding: 0;
 }
+
 .header {
-    background-color:  var(--cor-secundaria);
+    background-color: var(--cor-secundaria);
     color: var(--cor-texto);
     text-align: center;
     padding: 20px;
     font-size: 36px;
-    font-weight: arial;
+    font-weight: bold;
     text-shadow: 2px 2px 4px var(--cor-texto);
 }
+
 .container {
-    width: 30%;
+    width: 100%;
+    max-width: 1200px; /* Limite a largura máxima */
     margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap; /* Permite que os cards se movam para a próxima linha */
+    justify-content: space-between; /* Espaço entre os cards */
 }
+
 .card {
     background-color: var(--cor-secundaria);
     color: var(--cor-texto);
     padding: 20px;
-    margin: 20px 0;
+    margin: 10px; /* Reduzir a margem para caber mais cards */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    flex: 1 1 calc(25% - 20px); /* Cada card ocupará 25% do contêiner menos a margem */
+    box-sizing: border-box; /* Inclui padding e borda no cálculo da largura */
 }
+
 .card h2 {
     margin-top: 0;
     font-size: 24px;
-    font-weight: arial;
-    color: var(--cor-texto)
+    font-weight: bold;
+    color: var(--cor-texto);
 }
+
 .card p {
     font-size: 16px;
-    color: var(--cor-texto)
+    color: var(--cor-texto);
 }
-.card a  {
+
+.card a {
     text-decoration: none;
 }
 
@@ -57,16 +63,32 @@ body {
     vertical-align: middle;
     margin-right: 10px;
 }
+
 .card .icon {
     float: left;
     margin-right: 20px;
 }
+
 .card .icon img {
     width: 100px;
     height: 100px;
 }
+
 .clearfix::after {
     content: "";
     clear: both;
     display: table;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .card {
+        flex: 1 1 calc(50% - 20px); /* Dois cards por linha em telas menores */
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        flex: 1 1 100%; /* Um card por linha em telas muito pequenas */
+    }
 }
